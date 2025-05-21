@@ -14,13 +14,7 @@
 # KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
-
-build/
-cmake-build-debug/
-cmake-build-release/
-testing/
-.DS_Store
-
-
-# intellij files
-.idea
+#
+# Add specific undefined suppressions here if needed
+# Format:
+# signed-integer-overflow:source_file.cc
