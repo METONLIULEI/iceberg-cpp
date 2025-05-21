@@ -40,40 +40,42 @@ target_sources(schema_test
                        sort_field_test.cc
                        sort_order_test.cc
                        snapshot_test.cc)
-target_link_libraries(schema_test PRIVATE iceberg_static GTest::gtest_main GTest::gmock)
+target_link_libraries(schema_test PRIVATE iceberg_static iceberg_sanitizer_flags
+                                          GTest::gtest_main GTest::gmock)
 add_test(NAME schema_test COMMAND schema_test)
 
 add_executable(expression_test)
 target_sources(expression_test PRIVATE expression_test.cc)
-target_link_libraries(expression_test PRIVATE iceberg_static GTest::gtest_main
-                                              GTest::gmock)
+target_link_libraries(expression_test PRIVATE iceberg_static iceberg_sanitizer_flags
+                                              GTest::gtest_main GTest::gmock)
 add_test(NAME expression_test COMMAND expression_test)
 
 add_executable(json_serde_test)
 target_include_directories(json_serde_test PRIVATE "${CMAKE_BINARY_DIR}")
 target_sources(json_serde_test PRIVATE json_internal_test.cc metadata_serde_test.cc
                                        schema_json_test.cc)
-target_link_libraries(json_serde_test PRIVATE iceberg_static GTest::gtest_main
-                                              GTest::gmock)
+target_link_libraries(json_serde_test PRIVATE iceberg_static iceberg_sanitizer_flags
+                                              GTest::gtest_main GTest::gmock)
 add_test(NAME json_serde_test COMMAND json_serde_test)
 
 add_executable(util_test)
 target_sources(util_test PRIVATE expected_test.cc formatter_test.cc config_test.cc
                                  visit_type_test.cc)
-target_link_libraries(util_test PRIVATE iceberg_static GTest::gtest_main GTest::gmock)
+target_link_libraries(util_test PRIVATE iceberg_static iceberg_sanitizer_flags
+                                        GTest::gtest_main GTest::gmock)
 add_test(NAME util_test COMMAND util_test)
 
 if(ICEBERG_BUILD_BUNDLE)
   add_executable(avro_test)
   target_sources(avro_test PRIVATE avro_test.cc avro_schema_test.cc avro_stream_test.cc)
-  target_link_libraries(avro_test PRIVATE iceberg_bundle_static GTest::gtest_main
-                                          GTest::gmock)
+  target_link_libraries(avro_test PRIVATE iceberg_bundle_static iceberg_sanitizer_flags
+                                          GTest::gtest_main GTest::gmock)
   add_test(NAME avro_test COMMAND avro_test)
 
   add_executable(arrow_test)
   target_sources(arrow_test PRIVATE arrow_test.cc arrow_fs_file_io_test.cc
                                     metadata_io_test.cc)
-  target_link_libraries(arrow_test PRIVATE iceberg_bundle_static GTest::gtest_main
-                                           GTest::gmock)
+  target_link_libraries(arrow_test PRIVATE iceberg_bundle_static iceberg_sanitizer_flags
+                                           GTest::gtest_main GTest::gmock)
   add_test(NAME arrow_test COMMAND arrow_test)
 endif()
